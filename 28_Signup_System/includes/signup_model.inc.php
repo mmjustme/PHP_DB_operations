@@ -11,7 +11,7 @@ function get_user_name(object $pdo, string $username) {
     
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(":username", $username);
-    $pdo->execute();
+    $stmt->execute();
     
     
     # fetch візьме перший результат і поверне його
@@ -25,7 +25,7 @@ function get_email(object $pdo, string $email) {
     
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(":email", $email);
-    $pdo->execute();
+    $stmt->execute();
         
     $result=$stmt->fetch(PDO::FETCH_ASSOC);
     return $result;

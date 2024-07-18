@@ -5,7 +5,7 @@
 if($_SERVER["REQUEST_METHOD"] === "POST"){
     # відхоплюємо дані з форми
     $username = $_POST["username"];
-    $pwd = $_POST["pws"];
+    $pwd = $_POST["pwd"];
     $email = $_POST["email"];
 
     try {
