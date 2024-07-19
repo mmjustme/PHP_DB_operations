@@ -41,7 +41,16 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
             die();
         }
 
+        # тепер можна створити юзера
+        create_user($pdo, $username, $pwd, $email);
+        # перекидаємо юзера на index з signup=success
+        header("Location: ../index.php?signup=success");
+        
+        # обнуляємо процеси
+        $pdo = null;        
+        $stmt = null;        
 
+        die();
     } catch (PDOExeption $e) {
         die("Query failed: " .  $e->getMessage());
     }
