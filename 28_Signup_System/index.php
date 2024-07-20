@@ -1,6 +1,7 @@
 <?php
-    require_once "includes/signup_view.inc.php";
     require_once "includes/config_session.inc.php";
+    require_once "includes/signup_view.inc.php";
+    require_once "includes/login_view.inc.php";
 ?>
 
 
@@ -20,6 +21,10 @@
         <input type="password" name="pwd" placeholder="Password">        
         <button>Login</button>
     </form>
+
+    <?php
+        check_login_errors();
+    ?>
 
     <h3>Signup</h3>
     <form action="includes/signup.inc.php" method="post">      
