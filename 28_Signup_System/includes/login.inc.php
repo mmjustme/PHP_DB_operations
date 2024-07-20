@@ -43,9 +43,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         session_id($sessionId);
         # потрібно оновити config оск кожні 30хв ми скидаємо id 
         # і в оновленому id вже не буде логіки вище (тобто без user id)
-
         
+        $_SESSION["user_id"] = $result["id"];
+        # оск ми хочемо вивести юзера тому тут htmlspecialchars
+        $_SESSION["user_username"] = htmlspecialchars($result["username"]);
 
+        $_SESSION["last_regeneration"] = time();
     } catch (PDOExeption $e) {
         die("Query failed: " .  $e->getMessage());
     }
