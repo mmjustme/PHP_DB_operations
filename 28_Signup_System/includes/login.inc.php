@@ -34,7 +34,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             die();
         }
 
+        # інтегруємо id юзера в session id щоб потім його використовувати
+        # це лише для інфо
+        $newSessionId = session_create_id();
+        # поєднуємо через "_" новий id сесії з id юзера
+        $sessionId =  $newSessionId . "_" . $result["id"];
+        # оновулюємо session_id на той що ми вище вказали
+        session_id($sessionId);
+        # потрібно оновити config оск кожні 30хв ми скидаємо id 
+        # і в оновленому id вже не буде логіки вище (тобто без user id)
+
         
+
     } catch (PDOExeption $e) {
         die("Query failed: " .  $e->getMessage());
     }
