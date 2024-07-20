@@ -37,6 +37,15 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
         if($errors){
             # присвоюємо error_sinup наш масив з помилками і в кукі зберігаємо
             $_SESSION["errors_signup"] = $errors;
+            
+            # створюємо можливість відобразити дані після невірного вводу
+            $signupData=[
+                "username"=> $username,
+                "email"=> $email,
+            ];
+            # додаємо наші дані в сесію
+            $_SESSION["signup_data"] = $signupData;
+
             header("Location: ../index.php");
             die();
         }
