@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (is_username_taken($pdo, $username)) {
             $errors["username_taken"] = "Username already taken!";
         }
-        if (is_email_taken($pdo, $username)) {
+        if (is_email_taken($pdo, $email)) {
             $errors["email_taken"] = "Email already taken!";
         }
 
@@ -43,20 +43,29 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             # для відображання помилок юзеру передаємо помилки в змінну errors_signup  
             # зберігючи в сесії і повертаємо юзера на головну сторінку завершуючи die()
             $_SESSION["errors_signup"] = $errors;
+
+            # збережемо дані що ввів юзер щоб відтворити їх в полі
+            # щоб не вводити повторно коли після помилки поля очищуються 
+            $signupData = [
+                "username" => $username,
+                "email" => $email,
+            ];
+            $_SESSION["signup_data"] = $signupData;
+
             header("Location: ../index.php");
             die();
         }
-        
+
         # на даному етапі ми створюєио користувача
         create_user($pdo, $pwd, $username, $email);
-        
+
         # перекидаємо юзера на головну сторінку
         # також додаємо параметр signup=success щоб вивести повідомлення
         header("Location: ../index.php?signup=success");
 
 
-        $pdo=null;
-        $stmt=null;
+        $pdo = null;
+        $stmt = null;
 
         die();
     } catch (PDOException $e) {
