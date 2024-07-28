@@ -42,3 +42,8 @@ function is_email_taken(object $pdo, string $email)
         return false;
     }
 }
+
+function create_user(object $pdo, string $pwd, string $username, string $email)
+{
+    set_user($pdo, $pwd, $username, $email);
+}

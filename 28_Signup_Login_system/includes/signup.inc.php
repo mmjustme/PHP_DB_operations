@@ -46,6 +46,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             header("Location: ../index.php");
             die();
         }
+        
+        # на даному етапі ми створюєио користувача
+        create_user($pdo, $pwd, $username, $email);
+        
+        # перекидаємо юзера на головну сторінку
+        # також додаємо параметр signup=success щоб вивести повідомлення
+        header("Location: ../index.php?signup=success");
+
+
+        $pdo=null;
+        $stmt=null;
+
+        die();
     } catch (PDOException $e) {
         die("Query failed: " . $e->getMessage());
     }
