@@ -1,3 +1,10 @@
+<?php
+# підключаємо для сесії
+require_once "includes/config_session.inc.php";
+# підключаємо для показу помилок
+require_once "includes/views/signup_view.inc.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,6 +31,10 @@
         <input type="text" name="email" placeholder="Email">
         <button>Signup</button>
     </form>
+
+    <?php
+    check_signup_errors();
+    ?>
 
 </body>
 
