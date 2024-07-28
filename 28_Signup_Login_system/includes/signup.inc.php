@@ -15,14 +15,36 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         require_once "controllers/signup_contr.inc.php";
 
         # ERROR HANDLERS
+        # даний масив буде наповнюватися в залежності від помилки
+        $errors = [];
+
         # функції перевірки на помилки в signup_contr
         if (is_input_empty($username, $pwd, $email)) {
+            # наповнюємо $errors = []; помилками як асоц. масив
+            $errors["empty_input"] = "Fill in all inputs!";
         }
         if (is_email_invalid($email)) {
+            $errors["invalid_email"] = "Invalid Email!";
         }
         if (is_username_taken($pdo, $username)) {
+            $errors["username_taken"] = "Username already taken!";
         }
         if (is_email_taken($pdo, $username)) {
+            $errors["email_taken"] = "Email already taken!";
+        }
+
+
+        # запускаємо ссесію через даний файл 
+        require_once "config_session.inc.php";
+
+        # на даному етапі наш масив $errors або з данними(з помилками) 
+        # і це = true, або пустий (тобто без помилок) і це = false
+        if ($errors) {
+            # для відображання помилок юзеру передаємо помилки в змінну в сесії 
+            # і повертаємо юзера на головну сторінку завершуючи die()
+            $_SESSION["error_signup"] = $errors;
+            header("Location: ../index.php");
+            die();
         }
     } catch (PDOException $e) {
         die("Query failed: " . $e->getMessage());
