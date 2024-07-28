@@ -18,5 +18,10 @@ function check_signup_errors()
 
         # очищаємо сесію
         unset($_SESSION["errors_signup"]);
+    } else if (isset($_GET["signup"]) && $_GET["signup"] === "success") {
+        # при успішному ств юзера ми вставили параметр "?signup=success"
+        # відхоплюємо signup, перевіряємо чи = success і виводимо повідомлення
+        echo "<br>";
+        echo "<p 'class=form-success'>Signup success!</p>";
     }
 }

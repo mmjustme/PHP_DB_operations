@@ -20,6 +20,7 @@ form {
     justify-content: center;
     align-items: center;
 }
+
 input, button {
     padding: 7px;
     width: 300px;
@@ -27,6 +28,9 @@ input, button {
     border-radius: 5px;
     margin: 5px;
     
+}
+button{
+    width: 90px;
 }
 
 input:hover, button:hover {
@@ -42,3 +46,9 @@ button:hover {
     color: red;
     text-align: center;
 }
+
+.form-success{
+    color: green;
+    text-align: center;
+}
+
