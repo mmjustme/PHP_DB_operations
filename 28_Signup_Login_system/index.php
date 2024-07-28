@@ -18,7 +18,7 @@
     </form>
 
     <h3>Signup</h3>
-    <form action="" method="post">
+    <form action="includes/signup.inc.php" method="post">
         <input type="text" name="username" placeholder="Username">
         <input type="password" name="pwd" placeholder="Password">
         <input type="text" name="email" placeholder="Email">
