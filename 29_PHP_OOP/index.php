@@ -28,6 +28,9 @@
     <h3>OOP Example</h3>
 
     <?php
+    # використання класів буде в окремому файлі в index.php
+    # але зараз тут два приклади як Car.php так і index.php
+
     echo "---Car.php","<br>";
     require_once "Classes/Car.php";
 
