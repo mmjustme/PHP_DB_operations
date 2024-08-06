@@ -9,6 +9,20 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
         require_once "models/login_model.inc.php";
         require_once "controllers/login_contr.inc.php";
 
+        $errors = [];
+
+        if(is_input_empty($username, $pwd)){
+            $errors["empty_input"] = "Fill in all inputs!";
+        }
+        # функція з login_model
+        $result = get_user($pdo, $username);
+
+        if(is_username_wrong($results["username"])){
+            $errors["login_incorect"] = "Incorrect login info!";
+        }
+        if(!is_username_wrong($result) && is_password_wrong($pwd, $result["pwd"])){
+            $errors["login_incorect"] = "Incorrect login info!";
+        }
 
     } catch (PDOException $e) {
         die("Qeury failed: " . $e->getMessage());
