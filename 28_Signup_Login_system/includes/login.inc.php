@@ -32,6 +32,14 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
             header("Location: ../index.php");
             die();
         }
+        
+        # опціональний метод, перестворення id сесії з використанням id юзера
+        $newSessionId = session_create_id();
+        $sessionId =  $newSessionId . "_" . $result["id"];
+        session_id($sessionId);
+        # також слід врахувати що кожні 30 хв буде 
+        # перестворюватися сесія згідно config_session, тому там теж додамо даний метод 
+
     } catch (PDOException $e) {
         die("Qeury failed: " . $e->getMessage());
     }
