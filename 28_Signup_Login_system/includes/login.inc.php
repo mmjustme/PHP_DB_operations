@@ -24,6 +24,14 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
             $errors["login_incorect"] = "Incorrect login info!";
         }
 
+        require_once "config_session.inc.php";
+
+        if($errors){
+            $_SESSION["errors_login"]= $errors;
+
+            header("Location: ../index.php");
+            die();
+        }
     } catch (PDOException $e) {
         die("Qeury failed: " . $e->getMessage());
     }
