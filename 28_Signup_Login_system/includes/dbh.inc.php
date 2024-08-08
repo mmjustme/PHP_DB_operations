@@ -1,7 +1,7 @@
 <?php
 # підключаємо базу данних
 $host = "localhost";
-$dbname = "signup_db";
+$dbname = "practice_signin_db";
 $dbusername = "root";
 $dbpassword = "";
 
