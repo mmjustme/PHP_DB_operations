@@ -40,6 +40,22 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
         # також слід врахувати що кожні 30 хв буде 
         # перестворюватися сесія згідно config_session, тому там теж додамо даний метод 
 
+        # Login user
+        # додаємо юзера в сесію і оск будемо виводити user_username викор htmlspecialchars
+        $_SESSION["user_id"] = $result["id"];
+        $_SESSION["user_username"] = htmlspecialchars($result["username"]);
+        
+        # Оновлюємо сесію оск юзер залогінився
+        # і оск  $_SESSION["user_id"] вже буде існувати запуститься 
+        # regenerate_session_id_loggedin з config_session файлу
+        $_SESSION["last_regeneration"] = time();
+        
+        # Повертаємося на головну з повідомленням login=success і звільняємо ресурси
+        header("Location: ../index.php?login=success");
+        $pdo=null;
+        $stmt=null;
+
+        die();
     } catch (PDOException $e) {
         die("Qeury failed: " . $e->getMessage());
     }
