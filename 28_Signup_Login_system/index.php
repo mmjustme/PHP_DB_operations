@@ -19,7 +19,7 @@ require_once "includes/views/login_view.inc.php";
 <body>
 
     <h3>Login</h3>
-    <form action="" method="post">
+    <form action="./includes/login.inc.php" method="post">
         <input type="text" name="username" placeholder="Username">
         <input type="password" name="pwd" placeholder="Password">
         <button>Login</button>
