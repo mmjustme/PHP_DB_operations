@@ -24,6 +24,18 @@ require_once "includes/views/login_view.inc.php";
     ?>
 </h3>
 
+<!-- зверни увагу на php сигнтаксис, де if в <?php?> далі форма і закриваюча дужка з if в <?php?> -->
+<!-- умова додана щоб відображати логінація лише коли ми НЕ залогінені -->
+<?php if(!isset($_SESSION["user_id"])){ ?>
+<h3>Login</h3>
+    <form action="./includes/login.inc.php" method="post">
+        <input type="text" name="username" placeholder="Username">
+        <input type="password" name="pwd" placeholder="Password">
+        <button>Login</button>
+    </form>
+   
+<?php } ?>
+
     <h3>Login</h3>
     <form action="./includes/login.inc.php" method="post">
         <input type="text" name="username" placeholder="Username">
