@@ -18,3 +18,13 @@ function check_login_errors(){
         echo "<p class='form-success'>Login success</p>";
     }
 }
+
+# якщо існує user_id, отже юзер залогінений
+# і ми можемо змінювати контетн який покахуємо
+function output_username(){
+    if(isset($_SESSION["user_id"])){
+        echo "You are logged in as ". $_SESSION["user_username"];
+    } else {
+        echo "You are not logged in";
+    }
+}
