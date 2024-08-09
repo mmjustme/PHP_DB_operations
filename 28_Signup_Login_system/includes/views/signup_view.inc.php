@@ -27,7 +27,7 @@ function signup_inputs()
     if (
         isset($_SESSION["signup_data"]["email"]) &&
         !isset($_SESSION["errors_signup"]["invalid_email"]) &&
-        !isset($_SESSION["errors_signup"]["email_taken"]) && 
+        !isset($_SESSION["errors_signup"]["email_taken"]) &&
         !isset($_GET["signup"])
     ) {
         # додаємо value зі значенням яке вводив юзер
