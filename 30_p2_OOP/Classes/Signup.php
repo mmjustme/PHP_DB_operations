@@ -14,6 +14,7 @@ class Signup extends Dbh
         $this->pwd = $pwd;
     }
 
+    // потрібно створити getter, setter methods для даного класу
 
     private function connect(){}
 
@@ -28,5 +29,25 @@ class Signup extends Dbh
         $stmt->bindParam(":username", $this->username);
         $stmt->bindParam(":pwd", $this->pwd);
         $stmt->execute();
+    }
+
+    private function isEmptySubmit(){
+        if(isset($this->username) && isset($this->pwd)){
+            return false;
+        } else {
+            return true;
+        }
+    }
+    # хороша практика створювати методи приватними і лише потім якщо винекне потреба змінити на публічні
+    # оск даний метод буде викор в signup.php він буде publick
+    public function signupUser() {
+        // error handlers
+        if($this->isEmptySubmit()){
+            header("Location: " . $_SERVER['DOCUMENT_ROOT'] .  './index.php');
+            die();
+        }
+
+        //if no error handlers signup user
+        $this->insertUser();
     }
 }

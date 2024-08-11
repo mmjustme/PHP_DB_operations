@@ -9,6 +9,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     require_once "../Classes/Signup.php";
 
     $signup = new Signup($username, $pwd);
+    $signup->signupUser();
 } else {
     header("Location: ../index.php");
     die();
